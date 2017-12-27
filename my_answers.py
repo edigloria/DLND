@@ -142,8 +142,8 @@ class NeuralNetwork(object):
         #self.weights_hidden_to_output += None # update hidden-to-output weights with gradient descent step
         #self.weights_input_to_hidden += None # update input-to-hidden weights with gradient descent step
 
-        self.weights_hidden_to_output += self.lr*delta_weights_h_o/n_records
-        self.weights_input_to_hidden += self.lr*delta_weights_i_h/n_records
+        self.weights_hidden_to_output += delta_weights_h_o/n_records
+        self.weights_input_to_hidden += delta_weights_i_h/n_records
 
         
     def run(self, features):
@@ -165,7 +165,7 @@ class NeuralNetwork(object):
         #final_inputs = None # signals into final output layer
         #final_outputs = None # signals from final output layer 
         final_inputs = np.dot(hidden_outputs,self.weights_hidden_to_output)
-        final_outputs = final_inputs
+        final_outputs = self.activation_function(final_inputs)
         
         return final_outputs
 
